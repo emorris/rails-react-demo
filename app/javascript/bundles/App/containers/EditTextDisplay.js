@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import TextInputControl from './TextInputControl'
-import EditTextDisplay from './EditTextDisplay'
-import MessageList from './MessageList'
-
-class SomethingSmall extends Component {
+class EditTextDisplay extends Component {
   constructor(props) {
     super(props);
 
@@ -12,9 +9,8 @@ class SomethingSmall extends Component {
   render() {
     return(
       <div>
-        <TextInputControl />
-        <EditTextDisplay />
-        <MessageList />
+        <h1>See the Magic</h1>
+        <div>{this.props.txt}</div>
       </div>
     )
   }
@@ -26,8 +22,8 @@ import {
 } from '../actions/index'
 
 const mapStateToProps = (state, ownProps) => {
-
   return {
+      txt: state.basic.tempTxt
   }
 }
 
@@ -36,9 +32,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-SomethingSmall = connect(
+EditTextDisplay = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SomethingSmall)
+)(EditTextDisplay)
 
-export default SomethingSmall
+export default EditTextDisplay
