@@ -1,24 +1,17 @@
-# README
+Stuff to install if needed
+https://postgresapp.com/
+gem install rails
+gem install foreman
+npm i yarn
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+cd into directory
+bundle install
+yarn install
+rake db:migrate 
 
-* Ruby version
+foreman start -f Procfile.dev <= should start both rails and javascript server
 
-* System dependencies
+go to http://localhost:3000/ 
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ 
