@@ -18,13 +18,19 @@ export const addMessage = () => {
   }
 }
 
-export const removeMessage = (txt) => {
+export const removeMessage = (index) => {
   return {
     type: REMOVE_MESSAGE,
-    txt
+     index 
   }
 }
 
+export const editMessage = (index) => {
+  return {
+    type: EDIT_MESSAGE,
+    index
+  }
+}
 
 export const resetView = () => {
   return {

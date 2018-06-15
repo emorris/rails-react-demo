@@ -22,10 +22,14 @@ export default function googleMapsReducer (state = initState, action){
        messageList:  [state.tempTxt, ...state.messageList]
      }
     case REMOVE_MESSAGE:
-      let listCopy =  state.messageList.splice(0)
       return {
         ...state,
-        messageList: listCopy.filter(txt => txt == action.txt)
+        messageList: [...state.messageList.slice(0, action.index), ...state.messageList.slice(action.index + 1)]
+      }
+    case EDIT_MESSAGE:
+      return {
+        tempTxt: state.messageList[action.index],
+        messageList: [...state.messageList.slice(0, action.index), ...state.messageList.slice(action.index + 1)]
       }
     case RESET_VIEW:
       return initState
