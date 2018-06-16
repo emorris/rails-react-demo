@@ -1,5 +1,15 @@
 import React from 'react'
 
+/**
+ *
+ * TextDisplay
+ * @func
+ * @param {Object} props
+ * @param {String} props.text
+ * @return {ReactComponent}
+ *
+ * */
+
 function TextDisplay ({ text }) {
   return(
     <div>

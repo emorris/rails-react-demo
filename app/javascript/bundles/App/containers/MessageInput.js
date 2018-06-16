@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 /**
  *
@@ -13,16 +13,23 @@ import React from 'react';
  *
  * */
 
-function MessageInput ({ messageText, postMessage, setMessageText  }) {
-  var input
-  return(
-    <div>
-      <input ref={node => {input = node} } onChange={() => setMessageText(input.value)} value={messageText} />
-      <button type="button" onClick={() => !input.value.trim() ? false : postMessage(input.value)} >
-        Add
-      </button>
-    </div>
-  )
+class MessageInput extends Component {
+  constructor(props){
+    super(props)
+  }
+  
+  render(){
+    var { messageText, postMessage, setMessageText  } = this.props
+    var input
+    return(
+      <div>
+        <input ref={node => {input = node} } onChange={() => setMessageText(input.value)} value={messageText} />
+        <button type="button" onClick={() => !input.value.trim() ? false : postMessage(input.value)} >
+          Add
+        </button>
+      </div>
+    )
+  }
 }
 
 import { connect } from 'react-redux'

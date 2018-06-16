@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import MessageInput from './MessageInput'
 import TextDisplay from '../components/TextDisplay'
-import Messages from './Messages'
+import MessageList from './MessageList'
 
-function SomethingSmall({ basicText }) {
-  return(
-    <div>
-      <MessageInput />
-      <TextDisplay text={basicText}/>
-      <Messages />
-    </div>
-  )
+class SomethingSmall extends Component {
+  constructor(props){
+    super(props)
+  }
+
+  render () {
+    var { basicText } = this.props
+
+    return(
+      <div>
+        <MessageInput />
+        <TextDisplay text={basicText}/>
+        <MessageList />
+      </div>
+    )
+  }
 }
 
 import { connect } from 'react-redux'
