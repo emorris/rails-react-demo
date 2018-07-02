@@ -1,58 +1,50 @@
 import React, { Component } from 'react';
-import TextInputControl from './TextInputControl'
+import { connect } from 'react-redux'
+import { removeMessage, editMessage } from '../actions/index'
+import Message from '../components/Message'
+
 class MessageList extends Component {
-  constructor(props) {
-    super(props);
-
+  constructor(props){
+    super(props)
   }
 
-  messageList(){
-    let i = 0
-    return this.props.messages.map((msg)=>{
-      i++
-      return(
-        <div key={`msg-${i}`}>
-          {msg}
-          <button onClick={this.props.removeMsg.bind(this)}>Remove</button>
-        </div>
-      )
-    })
-  }
+  render(){
+    var { messages, remove, edit } = this.props
 
-  render() {
-    return(
+    return (
       <div>
         <h1>Messages Added</h1>
-        {this.messageList()}
+        <ol>
+          {messages.map((m, i) => (
+          <Message 
+            key={`msg-${i}`}
+            message={m} 
+            index={i} 
+            removeFn={remove} 
+            editFn={edit}/> 
+          ))} 
+        </ol>
       </div>
     )
   }
 }
 
-import { connect } from 'react-redux'
-import {
-  removeMessage
-} from '../actions/index'
-
-const mapStateToProps = (state, ownProps) => {
-  console.log(state.basic.messageList)
+function mapStateToProps (state, ownProps) {
   return {
       messages: state.basic.messageList
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+function mapDispatchToProps (dispatch) {
   return {
-    removeMsg(){
-      console.log(this)
-      dispatch(removeMessage(this))
+    remove(index){
+      dispatch(removeMessage(index))
+    },
+    edit(index){
+      dispatch(editMessage(index))
     }
   }
 }
 
-MessageList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MessageList)
+export default connect(mapStateToProps, mapDispatchToProps)(MessageList)
 
-export default MessageList

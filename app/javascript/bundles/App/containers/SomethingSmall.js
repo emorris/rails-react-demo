@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import TextInputControl from './TextInputControl'
-import EditTextDisplay from './EditTextDisplay'
+import MessageInput from './MessageInput'
+import TextDisplay from '../components/TextDisplay'
 import MessageList from './MessageList'
 
 class SomethingSmall extends Component {
-  constructor(props) {
-    super(props);
-
+  constructor(props){
+    super(props)
   }
 
-  render() {
+  render () {
+    var { basicText } = this.props
+
     return(
       <div>
-        <TextInputControl />
-        <EditTextDisplay />
+        <MessageInput />
+        <TextDisplay text={basicText}/>
         <MessageList />
       </div>
     )
@@ -21,24 +22,10 @@ class SomethingSmall extends Component {
 }
 
 import { connect } from 'react-redux'
-import {
-
-} from '../actions/index'
-
-const mapStateToProps = (state, ownProps) => {
-
+function mapStateToProps (state) {
   return {
+    basicText: state.basic.tempTxt
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-SomethingSmall = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SomethingSmall)
-
-export default SomethingSmall
+export default connect(mapStateToProps)(SomethingSmall)
